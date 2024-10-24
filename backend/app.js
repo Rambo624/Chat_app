@@ -4,6 +4,7 @@ const {chats}=require("./utils/data")
 const dotenv=require("dotenv").config()
 const userRoute=require("./Routes/userRoute")
 const chatRoute=require("./Routes/chatRoute")
+const messageRoute=require("./Routes/messageRoute")
 const uri = process.env.MONGO_URL;
 const cookieParser=require("cookie-parser")
 const mongoose=require("mongoose")
@@ -53,4 +54,4 @@ app.get("/",(req,res)=>{
 })
 app.use("/",userRoute)
 app.use("/chat",chatRoute)
-
+app.use("/messages",messageRoute)
