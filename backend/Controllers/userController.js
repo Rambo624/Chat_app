@@ -2,7 +2,7 @@ const {chats}= require("../utils/data")
 const jwt=require("jsonwebtoken")
 const User=require("../Models/userSchema")
 const bcrypt=require("bcrypt")
-const { options } = require("../Routes/userRoute")
+
 
 
 
