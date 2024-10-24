@@ -52,7 +52,8 @@ const login=async (req,res)=>{
         sameSite: 'None',  // Allows cross-site cookie usage
         maxAge: 24 * 60 * 60 * 1000 // 1 day expiration time
     });
-    res.status(200).json({message:"Login Successful"})
+    const { password: _, ...userWithoutPassword } = user.toObject();
+    res.status(200).json({message:"Login Successful",data:userWithoutPassword})
     } catch (error) {
         res.status(400).json({message:error.message})  
     }
@@ -83,4 +84,19 @@ const allUsers=async(req,res)=>{
         res.status(400).json({message:error.message})  
     }
 }
-module.exports={getData,getChat,signUp,login,getUser,allUsers}
+
+const logOut=async(req,res)=>{
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,  // Cookie is sent over HTTPS only
+            sameSite: 'None',  // Allows cross-site cookie usage
+          
+        });
+        res.status(200).json("Log out successful")
+    } catch (error) {
+        res.status(400).json({message:error.message})  
+    }
+}
+
+module.exports={getData,getChat,signUp,login,getUser,allUsers,logOut}

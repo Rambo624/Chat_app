@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useRef } from 'react'
 import axiosInstance from '../utils/axiosInstance'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../utils/userSlice'
 function Login() {
   const emaillogin=useRef()
   const passwordlogin=useRef()
@@ -12,7 +14,7 @@ function Login() {
   const name=useRef()
   const navigate=useNavigate()
   const [successMsg,setSuccessmsg]=useState("")
-
+const dispatch=useDispatch()
 async function handleSignup(){
   try {
     const data={
@@ -40,7 +42,11 @@ async function handleLogin(){
       password:passwordlogin.current.value,
     }
     const response= await axiosInstance({method:"POST",url:"/login",data:data})
+    console.log(response)
 if(response.status===200){
+  console.log(response.data)
+  dispatch(addUser(response.data.data))
+  
 navigate("/home")
 }
   } catch (error) {

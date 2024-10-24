@@ -11,6 +11,6 @@ router.post("/login",userController.login)
 router.get("/profile",userAuth,userController.getUser)
 router.get("/allusers",userAuth,userController.allUsers)
 router.get("/fetchchat",userAuth,chatController.fetchChatofUser)
-
+router.post("/logout",userController.logOut)
 
 module.exports=router
