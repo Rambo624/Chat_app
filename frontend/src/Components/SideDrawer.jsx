@@ -12,7 +12,8 @@ import { Avatar } from "@/components/ui/avatar"
 import { useDispatch } from 'react-redux';
 import ProfileModel from './ProfileModel';
 import Drawer from './Drawer';
-function SideDrawer() {
+import { removeChat } from '../utils/chatSlice';
+function SideDrawer({fetchchat}) {
   const navigate=useNavigate()
 const dispatch=useDispatch()
   async function handleLogOut(){
@@ -22,6 +23,7 @@ const dispatch=useDispatch()
 
 navigate("/")
 dispatch(removeUser())
+dispatch(removeChat())
       }
     } catch (error) {
       console.log(error)
@@ -29,11 +31,11 @@ dispatch(removeUser())
   }
   return (
     <>
-     <Box className='bg-red-100 flex justify-between items-center'>
+     <Box className='bg-white flex justify-between items-center'>
     <Tooltip content="Search users to chat" >
     <Button className="hover:bg-gray-300 ml-4 ">
       <FaSearch className='w-5'/>
-    <Text className='md:block hidden  p-3'><Drawer /></Text>
+    <Text className='md:block hidden  p-3'><Drawer fetchchat={fetchchat} /></Text>
     </Button>
 </Tooltip>
 <p className='text-2xl'>Talk-ative</p>

@@ -77,7 +77,7 @@ const getUser=async(req,res)=>{
 const allUsers=async(req,res)=>{
     try {
         const user=req.user
-        const keyword=req.query.search?{$or:[{name:{$regex:req.query.search,$options:"i"}},{email:{$regex:req.query.search,$options:"i"}}]}:{}
+        const keyword=req.query.search?{$or:[{name:{$regex:req.query.search,$options:"i"}}]}:{}
         const users=await User.find(keyword).find({_id:{$ne:user._id}}).select("-password")
         res.status(200).json({data:users})
     } catch (error) {

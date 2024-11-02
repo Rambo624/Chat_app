@@ -4,7 +4,7 @@ const userController=require("../Controllers/userController")
 const chatController=require("../Controllers/chatController")
 const {userAuth}=require("../Middlewares/authUser")
 
-router.post("/accesschat",userAuth,chatController.accessChat)
+router.post("/accesschat/:id",userAuth,chatController.accessChat)
 //router.get("/fetchchat",userAuth,chatController.fetchChatofUser)
 router.post("/groupchat",userAuth,chatController.CreateGroupChat)
 

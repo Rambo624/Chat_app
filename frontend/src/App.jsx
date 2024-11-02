@@ -5,6 +5,7 @@ import { Provider as ChakraProvider } from "./Components/ui/provider"
 
 import { router } from './Routes/Route'
 import appStore from './utils/appStore'
+import { ToastContainer } from 'react-toastify'
 function App() {
   return (
     <div>
@@ -12,7 +13,7 @@ function App() {
       <Provider store={appStore}><RouterProvider router={router}></RouterProvider></Provider> 
     
       </ChakraProvider>
-     
+     <ToastContainer/>
   
     </div>
   )

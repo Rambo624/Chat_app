@@ -3,8 +3,9 @@ import axiosInstance from '../utils/axiosInstance'
 import { useState } from 'react'
 import Skeletons from './Skeleton'
 import { toast,Bounce } from 'react-toastify'
+import UserListItem from './UserListItem'
 
-function Drawer() {
+function Drawer({fetchchat}) {
     const [searchQuery,setSearchQuery]=useState("")
     const [searchResult,setSearchResult]=useState([])
     const [loading,setLoading]=useState(false)
@@ -22,6 +23,19 @@ setLoading(false)
         } catch (error) {
             console.log(error)
         }
+    }
+
+    async function handleChat(id){
+try {
+  console.log(id)
+ 
+  const response= await axiosInstance({url:`/chat/accesschat/${id}`, method:"POST"})
+  if(response.status===200){
+fetchchat()
+  }
+} catch (error) {
+  console.log(error)
+}
     }
   return (
     <div className=''>
@@ -44,18 +58,10 @@ setLoading(false)
       <button onClick={handleSearch} className='p-2 bg-gray-200 ml-2 rounded-md'>Go</button>
       </div>
       {loading?<Skeletons/>:searchResult.map((result)=>(
-        <div className='w-full mt-5'>
-       <div className='flex w-full '>
-        <figure className='  w-3/12 '>
-          <img className=' rounded-full  ' src={result.photo} alt="" />
-        </figure>
-<div className=' w-10/12  flex flex-col items-start ml-10'>
-  <h1 className='font-semibold'>{result.name}</h1>
-  <h1>{result.email}</h1>
-</div>
-       </div>
-    
-      </div>
+        <div onClick={()=>handleChat(result._id)} key={result._id}>
+                <UserListItem   id={result._id} name={result.name} photo={result.photo} email={result.email}/>
+
+        </div>
       ))}
       
     </div>

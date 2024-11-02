@@ -7,7 +7,9 @@ const accessChat=async(req,res)=>{
 try {
     
     const user=req.user
-    const {id}=req.body
+   
+    const {id}=req.params
+   
     const otherUser= await User.findById(id)
     if(!otherUser){
         return res.status(400).json({message:"User not foud"})
@@ -26,7 +28,7 @@ if(isChat.length>0){
         isGroupChat:false,
         users:[user._id,id]
     }
-    console.log(chatData)
+   // console.log(chatData)
     const createdChat=await Chat.create(chatData)
     const fullChat=await Chat.findOne({_id:createdChat._id}).populate("users","-password")
     res.status(200).json({data:fullChat})
