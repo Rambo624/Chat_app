@@ -5,11 +5,12 @@ import SenderModal from './SenderModal'
 
 function SingleChat() {
     const chat=useSelector((store)=>store.chat)
+    console.log(chat)
   return (
     <div className=''>
         <div className='flex justify-between'>
         <h1 className='text-2xl m-2'>{chat.name||chat?.chatname}</h1>
-        <button className='mr-3'><SenderModal users={chat?.users} name={chat.name} photo={chat.photo} groupChat={chat?.chatname}/></button>
+        <button className='mr-3'><SenderModal key={chat?._id} id={chat?._id} users={chat?.users} name={chat.name} photo={chat.photo} groupChat={chat?.chatname}/></button>
         </div>
        <div className='bg-gray-200  h-[500px] m-3'>
 

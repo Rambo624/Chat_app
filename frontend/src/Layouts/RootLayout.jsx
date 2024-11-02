@@ -15,7 +15,7 @@ function RootLayout() {
       const response = await axiosInstance({ method: 'GET', url: '/profile' });
       if (response.status === 200) {
         dispatch(addUser(response.data.data));
-        console.log('HELLO');
+      //  console.log('HELLO');
       }
     } catch (error) {
       console.error(error);

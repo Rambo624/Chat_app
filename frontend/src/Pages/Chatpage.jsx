@@ -18,7 +18,7 @@ const loggedinUser= useSelector((store)=>store.user)
 async function fetchChat(){
   try {
     const response= await axiosInstance({method:"GET",url:"/fetchchat"})
-    console.log(response.data.data)
+   // console.log(response.data.data)
     if(response.status===200){
 setFetchchat(response.data.data)
     }
@@ -32,7 +32,7 @@ fetchChat()
   },[])
 
 function handleChat(chat){
-  console.log(chat)
+ // console.log(chat)
   if(chat.isGroupChat){
     dispatch(addChat(chat))
   }
