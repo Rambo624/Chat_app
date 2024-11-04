@@ -37,8 +37,12 @@ function handleChat(chat){
     dispatch(addChat(chat))
   }
   else{
-    const otherUser=chat.users.find((user)=>user._id!==loggedinUser._id)
-    dispatch(addChat(otherUser))
+   const otherUser=chat.users.find((user)=>user._id!==loggedinUser._id)
+const otherUserWithChatId={
+  ...otherUser,
+  chatId:chat._id
+}
+    dispatch(addChat(otherUserWithChatId))
   }
 
 }

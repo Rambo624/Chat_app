@@ -27,7 +27,7 @@ setLoading(false)
 
     async function handleChat(id){
 try {
-  console.log(id)
+ // console.log(id)
  
   const response= await axiosInstance({url:`/chat/accesschat/${id}`, method:"POST"})
   if(response.status===200){

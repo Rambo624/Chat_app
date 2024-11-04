@@ -8,7 +8,7 @@ function SenderModal({ id, name, photo, groupChat, users }) {
   const [error, setError] = useState("");
   const [results, setResults] = useState([]);
   const [userList, setUserList] = useState(users);
-console.log(users)
+//console.log(users)
   async function handleAddUser(query) {
     try {
       const response = await axiosInstance.get(`/allusers?search=${query}`);
