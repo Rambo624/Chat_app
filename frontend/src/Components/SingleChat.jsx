@@ -16,7 +16,7 @@ function SingleChat() {
 
        </div>
     <div className='flex'>
-        <input type="text" placeholder='Type Message' className='border ml-3 mr-2 w-[92%] bg-gray-100' />
+        <input  type="text" placeholder='Type Message' className='border ml-3 mr-2 w-[92%] focus:outline-blue-500 bg-gray-100' />
         <button className='p-1 bg-green-500 text-white rounded-md mr-2'>Send</button>
     </div>
         </div>
