@@ -14,6 +14,7 @@ function Chatpage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 const [fetchchat,setFetchchat]=useState([])
+const [fetchAgain,setFetchAgain]=useState(false)
 const loggedinUser= useSelector((store)=>store.user)
 async function fetchChat(){
   try {
@@ -29,10 +30,10 @@ setFetchchat(response.data.data)
 
   useEffect(()=>{
 fetchChat()
-  },[])
+  },[fetchAgain])
 
 function handleChat(chat){
- // console.log(chat)
+  //console.log(fetchchat,"chat")
   if(chat.isGroupChat){
     dispatch(addChat(chat))
   }
@@ -40,7 +41,9 @@ function handleChat(chat){
    const otherUser=chat.users.find((user)=>user._id!==loggedinUser._id)
 const otherUserWithChatId={
   ...otherUser,
-  chatId:chat._id
+  chatId:chat._id,
+  lastMessage:chat?.latestMessage?.content
+
 }
     dispatch(addChat(otherUserWithChatId))
   }
@@ -63,8 +66,11 @@ const otherUserWithChatId={
             <button className='p-2  m-2'><GroupChatModal/></button>
           </div>
           <div>
-            {fetchchat.map((chat)=>(
-  <h1   key={chat._id} onClick={()=>handleChat(chat)} className='bg-gray-100 p-1 m-4 rounded-md hover:bg-green-600 hover:text-white'>{chat.isGroupChat?chat.chatname:chat.users.find((user)=>user._id!==loggedinUser._id)?.name}</h1>
+            {fetchchat.map((chats)=>(
+              <div onClick={()=>handleChat(chats)}  key={chats._id} className='bg-gray-100 justify-between flex items-center p-1 m-4 rounded-md hover:bg-green-600 hover:text-white'>
+                  <h1   className=' '>{chats.isGroupChat?chats.chatname:chats.users.find((user)=>user._id!==loggedinUser._id)?.name}</h1>
+<h1>{chats?.latestMessage?.content}</h1>
+              </div>
             ))}
           
           </div>
@@ -72,7 +78,7 @@ const otherUserWithChatId={
         </div>
         <div className='w-8/12  bg-white  rounded-md  shadow-lg m-5'>
         <div className=''>
-        <ChatBox/>
+        <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>
         </div>
         
           

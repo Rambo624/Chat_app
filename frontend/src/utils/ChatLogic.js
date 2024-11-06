@@ -23,7 +23,7 @@ export const isSameSender = (message, m, i, userId) => {
       messages[i + 1]?.sender?._id === m.sender?._id && // Check if sender and _id exist
       m.sender?._id !== userId
     ) {
-      return 33;
+      return 40;
     } else if (
       (i < messages.length - 1 &&
         messages[i + 1]?.sender?._id !== m.sender?._id &&
@@ -40,4 +40,7 @@ export const isSameSender = (message, m, i, userId) => {
   export const isSameUser = (messages, m, i) => {
     return i > 0 && messages[i - 1].sender._id === m.sender._id;
   };
+  
+
+
   

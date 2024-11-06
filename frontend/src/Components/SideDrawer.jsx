@@ -10,13 +10,17 @@ import { FaBell } from 'react-icons/fa';
 import { HStack } from "@chakra-ui/react"
 import { Avatar } from "@/components/ui/avatar"
 import { useDispatch,useSelector } from 'react-redux';
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 import ProfileModel from './ProfileModel';
 import Drawer from './Drawer';
 import { removeChat } from '../utils/chatSlice';
+import BelldropDown from './BelldropDown';
 function SideDrawer({fetchchat}) {
   const navigate=useNavigate()
 const dispatch=useDispatch()
 const user=useSelector((store)=>store.user)
+const notification=useSelector((store)=>store.notification)
   async function handleLogOut(){
     try {
       const response=await axiosInstance({url:"/logout",method:"POST"})
@@ -41,15 +45,20 @@ dispatch(removeChat())
 </Tooltip>
 <p className='text-2xl'>Talk-ative</p>
 <div className='flex items-center '>
-  <FaBell className='mr-2 text-2xl'/>
-  
+<button>
+<NotificationBadge className="z-20 mt-1" count={notification.length} effect={Effect.SCALE}/>
+<BelldropDown/>
+
+</button>
+
   <details className="dropdown ">
-  <summary className="btn m-1 bg-transparent ">  <Avatar  variant="solid" name={user.name} /></summary>
+  <summary className="btn m-1 bg-transparent ">  <Avatar  variant="solid" name={user?.name} /></summary>
   <ul className="menu   dropdown-content gap-3 bg-base-100 rounded-box z-[1] w-20   shadow">
     <li className=" hover:bg-gray-200 p-2"><ProfileModel/></li>
     <li className=" hover:bg-gray-200 p-2" onClick={handleLogOut}>Logout</li>
   </ul>
 </details>
+
 
 
 </div>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { isSameSenderMargin } from '../utils/ChatLogic'
 import { isSameUser } from '../utils/ChatLogic'
 function ScrollableChat({message}) {
-    console.log(message)
+   // console.log(message)
 const user= useSelector((store)=>store.user)
 const chat=useSelector((store)=>store.chat)
 

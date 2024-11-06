@@ -44,7 +44,7 @@ const fetchChatofUser=async(req,res)=>{
     try {
         
         const user=req.user
-        const chats= await Chat.find({users:{$elemMatch:{$eq:user._id}}}).populate("users","-password")
+        const chats= await Chat.find({users:{$elemMatch:{$eq:user._id}}}).populate("users","-password").populate("latestMessage")
        // console.log(chats)
         if(!chats){
             return res.status(403).json({message:"No chats Found"})

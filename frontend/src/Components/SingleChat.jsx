@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { FaEye } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import SenderModal from './SenderModal'
 import axiosInstance from '../utils/axiosInstance'
 import ScrollableChat from './ScrollableChat'
+import { io } from "socket.io-client";
+import { addMessage } from '../utils/notificationSlice'
 
-function SingleChat() {
+
+const ENDPOINT="http://localhost:3000"
+var socket,selectedChatCompare
+
+
+function SingleChat({fetchAgain,setFetchAgain}) {
+  const dispatch=useDispatch()
+  const user=useSelector((store)=>store.user)
+  const notif=useSelector((store)=>store.notification)
     const chat=useSelector((store)=>store.chat)
     const [newMessage,setNewMessage]=useState("")
     const [messages,setMessages]=useState([])
+    const [socketConnected,setSocketConnected]=useState(false)
+    const [notification,setNotification]=useState(notif)
     //console.log(chat)
 
 async function getMessages(){
@@ -17,6 +29,8 @@ async function getMessages(){
   // console.log(response.data)
    if(response.status===200){
     setMessages(response.data.data)
+
+    socket.emit("join chat",chat?.chatId)
    }
   } catch (error) {
     console.log(error)
@@ -24,8 +38,30 @@ async function getMessages(){
 }
 
 useEffect(()=>{
+  socket=io(ENDPOINT)
+  socket.emit("setup",user)
+  socket.on("connection",setSocketConnected(true))
+  },[])
+  
+
+useEffect(()=>{
 getMessages()
+selectedChatCompare=chat
 },[chat])
+
+console.log(notification,"new notif")
+
+useEffect(()=>{
+  socket.on("message received",(newMessageReceived)=>{
+    if(!selectedChatCompare || selectedChatCompare._id!==newMessageReceived.sender._id){
+dispatch(addMessage([newMessageReceived,...notification]))
+setFetchAgain(!fetchAgain)
+    }else{
+      setMessages([...messages,newMessageReceived])
+    }
+  })
+})
+
 
 
     async function handleNewMessage(e){
@@ -38,8 +74,9 @@ setNewMessage(e.target.value)
           content:newMessage
         }
         const response= await axiosInstance({method:"POST", url:`/messages/sent/${chat?.chatId}`,data:data})
-       // console.log(response.data.data)
+        console.log(response.data.data)
         if(response.status===200){
+          socket.emit("new message",response.data.data)
           setMessages([...messages,response.data.data])
         }
       } catch (error) {
@@ -52,7 +89,7 @@ setNewMessage(e.target.value)
         <h1 className='text-2xl m-2'>{chat.name||chat?.chatname}</h1>
         <button className='mr-3'><SenderModal key={chat?._id} id={chat?._id} users={chat?.users} name={chat.name} photo={chat.photo} groupChat={chat?.chatname}/></button>
         </div>
-       <div className='bg-gray-200  h-[500px] m-3'>
+       <div className='bg-gray-200 overflow-scroll h-[500px] m-3'>
 <ScrollableChat message={messages}/>
        </div>
     <div className='flex'>
