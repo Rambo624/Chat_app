@@ -29,8 +29,9 @@ async function getMessages(){
   // console.log(response.data)
    if(response.status===200){
     setMessages(response.data.data)
-console.log("hai")
+//console.log("hai")
     socket.emit("join chat",chat?.chatId)
+  
    }
   } catch (error) {
     console.log(error)
