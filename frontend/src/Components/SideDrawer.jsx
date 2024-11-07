@@ -7,7 +7,7 @@ import { Box,Text } from '@chakra-ui/react';
 
 import {  FaSearch } from 'react-icons/fa';
 
-import { Avatar } from "@/components/ui/avatar"
+import { Avatar } from "./avatar"
 import { useDispatch,useSelector } from 'react-redux';
 
 import ProfileModel from './ProfileModel';
