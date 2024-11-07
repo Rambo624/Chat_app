@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
 import { removeUser } from '../utils/userSlice';
 import { Box,Text } from '@chakra-ui/react';
-import { Tooltip } from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+
+
 import {  FaSearch } from 'react-icons/fa';
 
 import { Avatar } from "@/components/ui/avatar"
@@ -35,12 +35,12 @@ dispatch(removeChat())
   return (
     <>
      <Box className='bg-white flex justify-between items-center'>
-    <Tooltip content="Search users to chat" >
-    <Button className="hover:bg-gray-300 ml-4 ">
+  
+    <button className="hover:bg-gray-300 ml-4 ">
       <FaSearch className='w-5'/>
     <Text className='md:block hidden  p-3'><Drawer fetchchat={fetchchat} /></Text>
-    </Button>
-</Tooltip>
+    </button>
+
 <p className='text-2xl'>Talk-ative</p>
 <div className='flex items-center '>
 <button>
