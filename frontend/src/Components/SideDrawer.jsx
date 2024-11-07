@@ -10,8 +10,7 @@ import { FaBell } from 'react-icons/fa';
 import { HStack } from "@chakra-ui/react"
 import { Avatar } from "@/components/ui/avatar"
 import { useDispatch,useSelector } from 'react-redux';
-import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
+
 import ProfileModel from './ProfileModel';
 import Drawer from './Drawer';
 import { removeChat } from '../utils/chatSlice';
@@ -46,7 +45,7 @@ dispatch(removeChat())
 <p className='text-2xl'>Talk-ative</p>
 <div className='flex items-center '>
 <button>
-<NotificationBadge className="z-20 mt-1" count={notification.length} effect={Effect.SCALE}/>
+
 <BelldropDown/>
 
 </button>
