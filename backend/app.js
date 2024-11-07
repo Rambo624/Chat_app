@@ -64,7 +64,7 @@ const server=  app.listen(port,(req,res)=>{
 const io = require('socket.io')(server,{
   pingTimeout:60000,
   cors:{
-    origin:'http://localhost:5173'
+    origin:['http://localhost:5173',"https://chat-app-frontend-omega-fawn.vercel.app"]
   }
 
 });

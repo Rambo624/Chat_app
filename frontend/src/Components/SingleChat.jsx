@@ -8,7 +8,7 @@ import { io } from "socket.io-client";
 import { addMessage } from '../utils/notificationSlice'
 
 
-const ENDPOINT="http://localhost:3000"
+const ENDPOINT=import.meta.env.VITE_BASE_URL
 var socket,selectedChatCompare
 
 

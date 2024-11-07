@@ -36,7 +36,7 @@ dispatch(removeChat())
     <>
      <Box className='bg-white flex justify-between items-center'>
   
-    <button className="hover:bg-gray-300 ml-4 ">
+    <button className="hover:bg-gray-300 ml-4 flex items-center ">
       <FaSearch className='w-5'/>
     <Text className='md:block hidden  p-3'><Drawer fetchchat={fetchchat} /></Text>
     </button>
