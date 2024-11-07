@@ -25,11 +25,11 @@ function SingleChat({fetchAgain,setFetchAgain}) {
 
 async function getMessages(){
   try {
-   const response= await axiosInstance({url:`/messages/getmessages/${chat?.chatId}`,method:"GET"}) 
+   const response= await axiosInstance({url:`/messages/getmessages/${chat?.chatId||chat?._id}`,method:"GET"}) 
   // console.log(response.data)
    if(response.status===200){
     setMessages(response.data.data)
-
+console.log("hai")
     socket.emit("join chat",chat?.chatId)
    }
   } catch (error) {
@@ -49,7 +49,7 @@ getMessages()
 selectedChatCompare=chat
 },[chat])
 
-console.log(notification,"new notif")
+//console.log(notification,"new notif")
 
 useEffect(()=>{
   socket.on("message received",(newMessageReceived)=>{
@@ -73,7 +73,7 @@ setNewMessage(e.target.value)
         const data={
           content:newMessage
         }
-        const response= await axiosInstance({method:"POST", url:`/messages/sent/${chat?.chatId}`,data:data})
+        const response= await axiosInstance({method:"POST", url:`/messages/sent/${chat?.chatId||chat?._id}`,data:data})
         console.log(response.data.data)
         if(response.status===200){
           socket.emit("new message",response.data.data)
