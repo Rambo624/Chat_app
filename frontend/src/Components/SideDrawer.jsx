@@ -5,9 +5,8 @@ import { removeUser } from '../utils/userSlice';
 import { Box,Text } from '@chakra-ui/react';
 import { Tooltip } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
-import { FaChevronDown, FaSearch } from 'react-icons/fa';
-import { FaBell } from 'react-icons/fa';
-import { HStack } from "@chakra-ui/react"
+import {  FaSearch } from 'react-icons/fa';
+
 import { Avatar } from "@/components/ui/avatar"
 import { useDispatch,useSelector } from 'react-redux';
 
