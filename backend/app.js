@@ -61,12 +61,14 @@ const server=  app.listen(port,(req,res)=>{
   console.log("server running on 3000")
 })
 
-const io = require('socket.io')(server,{
-  pingTimeout:60000,
-  cors:{
-    origin:['http://localhost:5173',"https://chat-app-frontend-omega-fawn.vercel.app"]
-  }
-
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: ['https://chat-app-frontend-omega-fawn.vercel.app', 'http://localhost:5173'], // Correct frontend URL
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Allow necessary headers
+    credentials: true,  // Allow cookies (important for session management)
+  },
 });
 
 
