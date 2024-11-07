@@ -12,7 +12,7 @@ const port=process.env.PORT
 const cors=require("cors")
 
 const allowedOrigins = [
-  'http://localhost:5173',"https://chat-app-frontend-omega-fawn.vercel.app/"
+  'http://localhost:5173',"https://chat-app-frontend-omega-fawn.vercel.app"
   
 
  
