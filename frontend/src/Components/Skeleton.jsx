@@ -1,6 +1,6 @@
 import React from 'react'
 import { HStack, Stack } from "@chakra-ui/react"
-import { Skeleton, SkeletonCircle } from "@/components/ui/skeleton"
+import { Skeleton, SkeletonCircle } from "./skeleton1"
 function Skeletons() {
   return (
     <div>
