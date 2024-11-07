@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Provider as ChakraProvider } from "./Components/ui/provider"
 
 import { router } from './Routes/Route'
-import appStore from './utils/appStore'
+import appStore from "./utils/appstore"
 import { ToastContainer } from 'react-toastify'
 function App() {
   return (
