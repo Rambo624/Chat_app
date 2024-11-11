@@ -75,10 +75,13 @@ setNewMessage(e.target.value)
           content:newMessage
         }
         const response= await axiosInstance({method:"POST", url:`/messages/sent/${chat?.chatId||chat?._id}`,data:data})
-        console.log(response.data.data)
+      //  console.log(response.data.data)
+ 
         if(response.status===200){
+          
           socket.emit("new message",response.data.data)
           setMessages([...messages,response.data.data])
+          setNewMessage("")
         }
       } catch (error) {
         console.log(error)
@@ -94,7 +97,7 @@ setNewMessage(e.target.value)
 <ScrollableChat message={messages}/>
        </div>
     <div className='flex'>
-        <input onChange={handleNewMessage}  type="text" placeholder='Type Message' className='border ml-3 mr-2 w-[92%] focus:outline-blue-500 bg-gray-100' />
+        <input onChange={handleNewMessage} value={newMessage}  type="text" placeholder='Type Message' className='border ml-3 mr-2 w-[92%] focus:outline-blue-500 bg-gray-100' />
         <button onClick={sendMessage} className='p-1 bg-green-500 text-white rounded-md mr-2'>Send</button>
     </div>
         </div>
