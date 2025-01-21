@@ -51,7 +51,7 @@ const otherUserWithChatId={
 }
 
   return (
-    <div className='bg-[url(https://thumbs.dreamstime.com/b/social-media-seamless-pattern-doodle-style-vector-illustration-wits-hand-drawn-icons-221411331.jpg)] bg-cover bg-center h-screen'>
+    <div className='bg-[url(https://personalmarketingdigital.com.br/wp-content/uploads/2018/05/background-whatsapp-7-1536x960.jpg)] bg-cover bg-center h-screen'>
 
 
       <div>
