@@ -57,7 +57,7 @@ navigate("/home")
 }
 
   return (
-    <div className="flex flex-col bg-[url(https://www.rabstol.net/uploads/gallery/main/648/rabstol_net_god_of_war_12.jpg)] bg-cover bg-center h-screen">
+    <div className="flex flex-col bg-[url(https://thumbs.dreamstime.com/b/social-media-seamless-pattern-doodle-style-vector-illustration-wits-hand-drawn-icons-221411331.jpg)] bg-cover bg-center h-screen">
       <div className='mx-auto bg-white w-[50%] p-3 rounded-lg text-center mt-10'>
         <h1 className='text-3xl'>Talk-ative</h1>
       </div>
