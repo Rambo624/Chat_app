@@ -51,7 +51,7 @@ const otherUserWithChatId={
 }
 
   return (
-    <div className='bg-[url(https://www.rabstol.net/uploads/gallery/main/648/rabstol_net_god_of_war_12.jpg)] bg-cover bg-center h-screen'>
+    <div className='bg-[url(https://thumbs.dreamstime.com/b/social-media-seamless-pattern-doodle-style-vector-illustration-wits-hand-drawn-icons-221411331.jpg)] bg-cover bg-center h-screen'>
 
 
       <div>
